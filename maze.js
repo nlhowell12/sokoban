@@ -22,12 +22,17 @@ for (let b=0; b < map.length; b++) {
     board[b] = map[b].split("");
 }
 
+
+
 document.addEventListener('keydown', (event) =>{
     const keyEvent = event.key;
     if (keyEvent == 'ArrowRight') {
         for (let y=0; y < board.length; y++){
             for (let x=0; x < board[y].length; x++) {
                 if (board[y][x] == "S" && board[y][x+1] != "W" && (x+1) != board[y].length) {
+                    if (board[y][x+1] === "F") {
+                        alert("You Win!")
+                    }
                     board[y][x+1] = "S";
                     board[y][x] = " ";
                     break;                                          
@@ -41,6 +46,9 @@ document.addEventListener('keydown', (event) =>{
         for (let y=0; y < board.length; y++){
             for (let x=0; x < board[y].length; x++) {
                 if (board[y][x] == "S" && board[y][x-1] != "W" && x != 0) {
+                    if (board[y][x-1] === "F") {
+                        alert("You Win!")
+                    }
                     board[y][x-1] = "S";
                     board[y][x] = " ";
                     break;                                          
@@ -54,6 +62,9 @@ document.addEventListener('keydown', (event) =>{
         for (let y=0; y < board.length; y++){
             for (let x=0; x < board[y].length; x++) {
                 if (board[y][x] == "S" && board[y-1][x] != "W" && y != 0) {
+                    if (board[y-1][x] === "F") {
+                        alert("You Win1!");
+                    }
                     board[y-1][x] = "S";
                     board[y][x] = " ";
                     break;                                          
@@ -68,6 +79,7 @@ document.addEventListener('keydown', (event) =>{
         for (let y=0; y < board.length; y++){
             for (let x=0; x < board[y].length; x++) {
                 if (board[y][x] == "S" && board[y+1][x] != "W") {
+                    if (board[y+1][x] === "F");
                     board[y+1][x] = "S";
                     board[y][x] = " ";
                     break outer;                                          
