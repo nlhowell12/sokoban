@@ -1,0 +1,42 @@
+#wrap {
+    display: flex;
+    height: 800px;
+    width: 800px;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    height: 100%;
+    flex-grow: 1;
+        
+}
+
+.wall {
+    background-image: url("./images/stoneWall.png");
+    flex-grow: 1;
+}
+
+.cell {
+    background-color: rgb(105, 102, 102);
+    flex-grow: 1;
+    /* display: flex; */
+    /* align-content: center;
+    justify-content: center; */
+}
+
+#start {
+    background-color: brown;
+}
+
+#finish {
+    background-color: green;
+}
+
+#playerIcon {
+    background-image: url("./images/Adventurer.png");
+    height: 38px;
+    /* width: 100%; */
+    flex-grow: 1;
+    align-self: center;
+}
