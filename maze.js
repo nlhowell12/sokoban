@@ -105,13 +105,13 @@ document.addEventListener('keydown', (event) => {
                         board[y][x] = " "
                         break; 
                         }
-                        else if (board[y][x] === "S" && board[y][x - 1] == "B" && board[y][x - 2] != "B" && board[y][x - 2] == "BO"){
+                        else if (board[y][x] === "S" && board[y][x - 1] == "B" && board[y][x - 2] != "B" && board[y][x - 2] == "BO" && board[y][x - 2] != "W"){
                         board[y][x - 1] = "S";
                         board[y][x - 2] = "B";
                         board[y][x] = " ";
                         break; 
                         }
-                        else if (board[y][x] === "S" && board[y][x - 1] === "BO") {
+                        else if (board[y][x] === "S" && board[y][x - 1] === "BO" && board[y][x - 2] != "W") {
                             console.log("triggered");
                         board[y][x - 1] = "SO";
                         board[y][x - 2] = "B";
