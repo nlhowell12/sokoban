@@ -159,13 +159,18 @@ document.addEventListener('keydown', (event) => {
                 if (board[y][x] === "S" && board[y - 1][x] != "W" && y != 0 && board[y - 1][x] != "B" && board[y - 1][x] != "BO") {
                     if (board[y - 1][x] != "O") {
                         board[y - 1][x] = "S";
+                        board[y][x] = " ";
+                        break;
                     } else {
+                        
                         board[y - 1][x] = "SO";
+                        board[y][x] = " ";
+                        break;
                     }
-                    board[y][x] = " ";
-                    break;
+                    
                 } else if (board[y][x] === "S" && board[y - 1][x] === "B" && board[y - 2][x] != "W" && board[y - 2][x] != "B") {
                     if (board[y - 2] != "O") {
+                        
                         board[y - 1][x] = "S";
                         board[y - 2][x] = "B";
                         board[y][x] = " ";
@@ -231,18 +236,17 @@ document.addEventListener('keydown', (event) => {
                         break outer;
                     }
                 } else if (board[y][x] === "SO" && board[y + 1][x] != "W") {
-                    if (board[y + 1][x] === "B" && board[y + 2][x] != "O" && board[y + 2][x] != "BO") {
+                    if (board[y + 1][x] === "B" && board[y + 2][x] != "O" && board[y + 2][x] != "BO" && board[y + 2][x] != "W") {
                         board[y + 1][x] = "S"
                         board[y + 2][x] = "B"
                         board[y][x] = "O"
                         break outer;
-                    } else if (board[y + 2][x] != "BO"){
+                    } else if (board[y + 2][x] != "W"){
                         if (board[y + 2][x] != "O"  && board[y + 2][x] != "W") {
                             board[y + 1][x] = "S"
                             board[y][x] = "O"
                             break outer;
                         } else if (board[y + 1][x] == "B" && board[y + 2][x] != "BO"){
-                            console.log("triggered")
                             board[y + 1][x] = "S"
                             board[y][x] = "O"
                             board[y + 2][x] = "BO"
