@@ -18,10 +18,10 @@ for (let b = 0; b < map.length; b++) {
 }
 
 function checkWin() {
-    let findStorage = document.querySelectorAll("#storage").length;
+    let findStorage = document.querySelectorAll("#filledStorage").length;
     let win = "false";
 
-    if (findStorage === 0) {
+    if (findStorage === 7) {
         win = "true";
 
         if (win = "true") {
@@ -79,7 +79,7 @@ document.addEventListener('keydown', (event) => {
                     board[y][x] = "O";
                     break;
                 }
-                else if (board[y][x] === "SO" && board[y][x + 1] != "W" && board[y][x + 1] === "B" && board[y][x + 2] != "B") {
+                else if (board[y][x] === "SO" && board[y][x + 1] != "W" && board[y][x + 1] === "B" && board[y][x + 2] != "B"  && board[y][x + 2] != "W" ) {
                     board[y][x + 2] = "B";
                     board[y][x + 1] = "S";
                     board[y][x] = "O";
