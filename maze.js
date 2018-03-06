@@ -259,6 +259,11 @@ document.addEventListener('keydown', (event) => {
                             break outer;
                         }
                     }
+                    else {
+                        board[y + 1][x] = "S";
+                        board[y][x] = "O";
+                        break outer;
+                    }
                 }
             }
         }
