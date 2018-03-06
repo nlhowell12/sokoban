@@ -2,6 +2,7 @@ body {
     display: flex;
     align-content: center;
     justify-content: center;
+    background-image: url("./images/sand.jpg")
 }
 
 #wrap {
@@ -16,7 +17,7 @@ body {
     display: flex;
     height: 100%;
     flex-grow: 1;
-    background-color: rgb(105, 102, 102);
+    /* background-color: rgb(105, 102, 102); */
 }
 
 .wall {
@@ -40,16 +41,27 @@ body {
 #playerIcon {
     background-image: url("./images/Adventurer.png");
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #barrel {
-    background-color: brown;
+    /* background-color: rgb(105, 102, 102); */
+    background-image: url("./images/barrel.png");
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #storage {
-    background-color: green;
+    /* background-color: rgb(105, 102, 102); */
+    background-image: url("./images/trapDoor.png");
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
+
 #filledStorage {
-    background-color: brown;
+    /* background-color: rgb(105, 102, 102); */
+    background-image: url("./images/barrelFilled.png");
+    background-position: center;
+    background-repeat: no-repeat;
 }
