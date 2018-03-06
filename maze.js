@@ -170,8 +170,7 @@ document.addEventListener('keydown', (event) => {
                     }
                     
                 } else if (board[y][x] === "S" && board[y - 1][x] === "B" && board[y - 2][x] != "W" && board[y - 2][x] != "B") {
-                    if (board[y - 2] == "O") {
-                        console.log("triggeredUP"); 
+                    if (board[y - 2][x] === "O") {
                         board[y - 1][x] = "S";
                         board[y - 2][x] = "BO";
                         board[y][x] = " ";
