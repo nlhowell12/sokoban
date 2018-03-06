@@ -93,7 +93,7 @@ document.addEventListener('keydown', (event) => {
     } else if (keyEvent == "ArrowLeft") {
         outer: for (let y = 0; y < board.length; y++) {
             for (let x = 0; x < board[y].length; x++) {
-                if (board[y][x] === "S" && board[y][x - 1] != "W" && x != 0 && board[y][x - 1] != "B") {
+                if (board[y][x] === "S" && board[y][x - 1] != "W" && x != 0 && board[y][x - 1] != "B" && board[y][x - 2] != "X" && board[y][x - 2] != "BO") {
 
                     if (board[y][x - 1] === "O") {
                         board[y][x - 1] = "SO"
@@ -105,7 +105,7 @@ document.addEventListener('keydown', (event) => {
                         board[y][x] = " ";
                         break;
                     }
-                    else {
+                    else if (board[y][x - 2] != "X"){
                         if (board[y][x] === "S" && board[y][x - 1] != "B" && board[y][x - 1] != "BO"){
                         board[y][x - 1] = "S"
                         board[y][x] = " "
@@ -124,7 +124,7 @@ document.addEventListener('keydown', (event) => {
                         }
                     }
 
-                } else if (board[y][x] === "S" && board[y][x - 1] === "B" && board[y][x - 2] != "W" && board[y][x - 1] != "BO") {
+                } else if (board[y][x] === "S" && board[y][x - 1] === "B" && board[y][x - 2] != "W" && board[y][x - 1] != "BO" && board[y][x - 2] != "X") {
                     if (board[y][x - 2] != "O") {
                         board[y][x - 1] = "S";
                         board[y][x - 2] = "B";
