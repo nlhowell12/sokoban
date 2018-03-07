@@ -319,7 +319,7 @@ function drawBoard() {
             if (board[y][x] === "SO") {
                 getRow.appendChild(createCell);
                 createCell.className = "cell";
-                createCell.id = "playerIcon";
+                createCell.id = "playerIconStorage";
             }
             if (board[y][x] === "X") {
                 getRow.appendChild(createCell);

@@ -43,6 +43,11 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
 }
+#playerIconStorage {
+    background-image: url("./images/adventurerStorage.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 #barrel {
     /* background-color: rgb(105, 102, 102); */
