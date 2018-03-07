@@ -258,6 +258,11 @@ document.addEventListener('keydown', (event) => {
                             board[y][x] = "O";
                             break outer;
                         }
+                        else {
+                            board[y + 1][x] = "S";
+                            board[y][x] = "O";
+                            break outer;
+                        }
                     }
                     else if (board[y][x] === "SO" && board[y + 1][x] != "B") {
                         board[y + 1][x] = "S";
