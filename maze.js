@@ -20,8 +20,9 @@ for (let b = 0; b < map.length; b++) {
 function checkWin() {
     let findStorage = document.querySelectorAll("#filledStorage").length;
     let win = "false";
-
+    
     if (findStorage === 7) {
+        
         win = "true";
 
         if (win = "true") {
@@ -124,7 +125,7 @@ document.addEventListener('keydown', (event) => {
                         }
                     }
 
-                } else if (board[y][x] === "S" && board[y][x - 1] === "B" && board[y][x - 2] != "W" && board[y][x - 1] != "BO" && board[y][x - 2] != "X") {
+                } else if (board[y][x] === "S" && board[y][x - 1] === "B" && board[y][x - 2] != "W" && board[y][x - 1] != "BO" && board[y][x - 2] != "X" && board[y][x - 2] != "BO") {
                     if (board[y][x - 2] != "O") {
                         board[y][x - 1] = "S";
                         board[y][x - 2] = "B";
@@ -324,7 +325,7 @@ function drawBoard() {
             if (board[y][x] === "X") {
                 getRow.appendChild(createCell);
                 createCell.className = "cell";
-                createCell.id = "filledStorage";
+                createCell.id = "xFilledStorage";
             }
         }
     }
