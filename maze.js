@@ -159,12 +159,18 @@ document.addEventListener('keydown', (event) => {
         for (let y = 0; y < board.length; y++) {
             for (let x = 0; x < board[y].length; x++) {
                 if (board[y][x] === "S" && board[y - 1][x] != "W" && y != 0 && board[y - 1][x] != "B" && board[y - 1][x] != "BO") {
-                    if (board[y - 1][x] != "O") {
+                    console.log('triggered')
+                    if (board[y - 1][x] != "O" && board[y - 1][x] != "X") {
                         board[y - 1][x] = "S";
                         board[y][x] = " ";
                         break outer;
-                    } else {
-                        
+                    } else if (board[y - 1][x] != "X"){
+                        board[y - 1][x] = "SO";
+                        board[y][x] = " ";
+                        break outer;
+                    }
+                    else {
+                        board[y-2][x] = "B"
                         board[y - 1][x] = "SO";
                         board[y][x] = " ";
                         break outer;
@@ -177,6 +183,7 @@ document.addEventListener('keydown', (event) => {
                         board[y][x] = " ";
                         break outer;
                     } else {
+             
                         board[y - 1][x] = "S";
                         board[y - 2][x] = "B";
                         board[y][x] = " ";
@@ -247,7 +254,7 @@ document.addEventListener('keydown', (event) => {
                             board[y + 1][x] = "S"
                             board[y][x] = "O"
                             break outer;
-                        } else if (board[y + 1][x] == "B" && board[y + 2][x] != "BO"){
+                        } else if (board[y + 1][x] === "B" && board[y + 2][x] != "BO"){
                             board[y + 1][x] = "S"
                             board[y][x] = "O"
                             board[y + 2][x] = "BO"
