@@ -71,11 +71,12 @@ document.addEventListener('keydown', (event) => {
     if (keyEvent == 'ArrowRight') {
         for (let y = 0; y < board.length; y++) {
             for (let x = 0; x < board[y].length; x++) {
+                if (x === 2 && y === 2) {debugger;}
                 let {next, nextNext} = getNextPositions(keyEvent, x, y); 
                 if (board[y][x] === "S" && board[next.y][next.x] != "W" && (next.x) != board[next.y].length && board[next.y][next.x] != "B") {
                     if (board[next.y][next.x] === "O") {
                         board[next.y][next.x] = "SO";
-                        board[next.y][next.x] = " ";
+                        board[y][x] = " ";
                         break;
                     } else if (board[next.y][next.x] === "BO" && board[nextNext.y][nextNext.x] != "W" && board[nextNext.y][nextNext.x] != "B") {
                         board[next.y][next.x] = "SO";
