@@ -68,25 +68,30 @@ function getNextPositions(keyEvent, x, y) {
 
 document.addEventListener('keydown', (event) => {
     const keyEvent = event.key;
-    if (keyEvent == 'ArrowRight') {
+    outer:
         for (let y = 0; y < board.length; y++) {
             for (let x = 0; x < board[y].length; x++) {
-                if (x === 2 && y === 2) {debugger;}
-                let {next, nextNext} = getNextPositions(keyEvent, x, y); 
+                if (x === 2 && y === 2) {
+                    debugger;
+                }
+                let {
+                    next,
+                    nextNext
+                } = getNextPositions(keyEvent, x, y);
                 if (board[y][x] === "S" && board[next.y][next.x] != "W" && (next.x) != board[next.y].length && board[next.y][next.x] != "B") {
                     if (board[next.y][next.x] === "O") {
                         board[next.y][next.x] = "SO";
                         board[y][x] = " ";
-                        break;
-                    } else if (board[next.y][next.x] === "BO" && board[nextNext.y][nextNext.x] != "W" && board[nextNext.y][nextNext.x] != "B") {
+                        break outer;
+                    } else if ((board[next.y][next.x] === "BO" || board[next.y][next.x] === "X") && board[nextNext.y][nextNext.x] != "W" && board[nextNext.y][nextNext.x] != "B") {
                         board[next.y][next.x] = "SO";
                         board[nextNext.y][nextNext.x] = "B";
                         board[y][x] = " ";
-                        break;
+                        break outer;
                     } else if (board[next.y][next.x] === " ") {
                         board[next.y][next.x] = "S";
                         board[y][x] = " ";
-                        break;
+                        break outer;
                     }
                 } else if (board[y][x] === "S" && board[next.y][next.x] === "B" && board[nextNext.y][nextNext.x] != "W" && board[nextNext.y][nextNext.x] != "B" && board[nextNext.y][nextNext.x] != "BO") {
                     if (board[nextNext.y][nextNext.x] === "O") {
@@ -96,211 +101,32 @@ document.addEventListener('keydown', (event) => {
                     }
                     board[next.y][next.x] = "S";
                     board[y][x] = " "
-                    break;
+                    break outer;
                 } else if (board[y][x] === "S" && board[next.y][next.x] === "O") {
                     board[next.y][next.x] = "SO";
                     board[y][x] = " "
-                    break;
+                    break outer;
                 } else if (board[y][x] === "SO" && board[next.y][next.x] != "W" && board[next.y][next.x] != "B") {
                     board[next.y][next.x] = "S";
                     board[y][x] = "O";
-                    break;
+                    break outer;
                 } else if (board[y][x] === "SO" && board[next.y][next.x] != "W" && board[next.y][next.x] === "B" && board[nextNext.y][nextNext.x] != "B" && board[nextNext.y][nextNext.x] != "W") {
-                    board[nextNext.y][nextNext.x] = "B";
-                    board[next.y][next.x] = "S";
+                    if (board[nextNext.y][nextNext.x] === "O") {
+                        board[nextNext.y][nextNext.x] = "BO";
+                        board[next.y][next.x] = "S";
+                    } else {
+                        board[nextNext.y][nextNext.x] = "B";
+                        board[next.y][next.x] = "S";
+                    }
                     board[y][x] = "O";
-                    break;
-                }
-            }
-        }
-        document.body.innerHTML = originalHtml;
-        drawBoard();
-        setTimeout(checkWin, 1000);
-    } else if (keyEvent == "ArrowLeft") {
-        outer: for (let y = 0; y < board.length; y++) {
-            for (let x = 0; x < board[y].length; x++) {
-                if (board[y][x] === "S" && board[y][x - 1] != "W" && x != 0 && board[y][x - 1] != "B") {
-                    if (board[y][x - 1] === "O") {
-                        board[y][x - 1] = "SO"
-                        board[y][x] = " "
-                        break;
-                    } else if (board[y][x] === "S" && board[y][x - 1] === "X") {
-                        board[y][x - 1] = "SO";
-                        board[y][x - 2] = "B"
-                        board[y][x] = " ";
-                        break;
-                    } else {
-                        if (board[y][x] === "S" && board[y][x - 1] != "B" && board[y][x - 1] != "BO") {
-                            board[y][x - 1] = "S"
-                            board[y][x] = " "
-                            break;
-                        } else if (board[y][x] === "S" && board[y][x - 1] == "B" && board[y][x - 2] != "B" && board[y][x - 2] == "BO" && board[y][x - 2] != "W") {
-                            board[y][x - 1] = "S";
-                            board[y][x - 2] = "B";
-                            board[y][x] = " ";
-                            break;
-                        } else if (board[y][x] === "S" && board[y][x - 1] === "BO" && board[y][x - 2] != "W" && board[y][x - 2] != "B") {
-                            board[y][x - 1] = "SO";
-                            board[y][x - 2] = "B";
-                            board[y][x] = " ";
-                            break;
-                        }
-                    }
-
-                } else if (board[y][x] === "S" && board[y][x - 1] === "B" && board[y][x - 2] != "W" && board[y][x - 1] != "BO" && board[y][x - 2] != "X" && board[y][x - 2] != "BO") {
-                    if (board[y][x - 2] != "O") {
-                        board[y][x - 1] = "S";
-                        board[y][x - 2] = "B";
-                    } else {
-                        board[y][x - 1] = "S";
-                        board[y][x - 2] = "BO";
-                    }
-                    board[y][x] = " ";
-                    break;
-                } else if (board[y][x] == "SO" && board[y][x - 1] != "W") {
-                    if (board[y][x - 1] != "B") {
-                        board[y][x - 1] = "S"
-                        board[y][x] = "O"
-                        break;
-                    } else if (board[y][x - 2] != "B" && board[y][x - 2] != "W") {
-                        board[y][x - 1] = "S";
-                        board[y][x - 2] = "B";
-                        board[y][x] = "O";
-                        break;
-                    }
-                }
-
-            }
-        }
-        document.body.innerHTML = originalHtml;
-        drawBoard();
-        setTimeout(checkWin, 1000);
-    }
-    else if (keyEvent == "ArrowUp") {
-        outer: for (let y = 0; y < board.length; y++) {
-            for (let x = 0; x < board[y].length; x++) {
-                if (board[y][x] === "S" && board[y - 1][x] != "W" && y != 0 && board[y - 1][x] != "B" && board[y - 1][x] != "BO") {
-                    console.log('triggered')
-                    if (board[y - 1][x] != "O" && board[y - 1][x] != "X") {
-                        board[y - 1][x] = "S";
-                        board[y][x] = " ";
-                        break outer;
-                    } else if (board[y - 1][x] != "X") {
-                        board[y - 1][x] = "SO";
-                        board[y][x] = " ";
-                        break outer;
-                    } else {
-                        board[y - 2][x] = "B"
-                        board[y - 1][x] = "SO";
-                        board[y][x] = " ";
-                        break outer;
-                    }
-
-                } else if (board[y][x] === "S" && board[y - 1][x] === "B" && board[y - 2][x] != "W" && board[y - 2][x] != "B") {
-                    if (board[y - 2][x] === "O") {
-                        board[y - 1][x] = "S";
-                        board[y - 2][x] = "BO";
-                        board[y][x] = " ";
-                        break outer;
-                    } else {
-
-                        board[y - 1][x] = "S";
-                        board[y - 2][x] = "B";
-                        board[y][x] = " ";
-                        break outer;
-                    }
-
-                } else if (board[y][x] == "SO" && board[y - 1][x] == "B" && board[y - 2][x] != "W" && board[y - 2][x] != "B") {
-                    board[y - 2][x] = "B"
-                    board[y - 1][x] = "S"
-                    board[y][x] = "O"
                     break outer;
-                } else if (board[y][x] == "S" && board[y - 1][x] == "BO" && board[y - 2][x] != "W" && board[y - 2][x] != "B") {
-                    board[y - 2][x] = "B"
-                    board[y - 1][x] = "SO"
-                    board[y][x] = " "
-                    break outer;
-                } else if (board[y][x] == "SO" && board[y - 1][x] != "W" && board[y - 1][x] != "B") {
-                    board[y - 1][x] = "S"
-                    board[y][x] = "O"
-                    break outer;
+                }
+            }
+        }
+    document.body.innerHTML = originalHtml;
+    drawBoard();
+    setTimeout(checkWin, 1000);
 
-                }
-            }
-        }
-        document.body.innerHTML = originalHtml;
-        drawBoard();
-        setTimeout(checkWin, 1000);
-    }
-    else if (keyEvent == "ArrowDown") {
-        outer: for (let y = 0; y < board.length; y++) {
-            for (let x = 0; x < board[y].length; x++) {
-                if (board[y][x] == "S" && board[y + 1][x] != "W" && board[y + 1][x] != "B") {
-                    if (board[y + 1][x] != "O") {
-                        if (board[y + 1][x] != "BO" && board[y + 1][x] != "X") {
-                            board[y + 1][x] = "S";
-                            board[y][x] = " ";
-                            break outer;
-                        } else if (board[y + 2][x] != "W" && board[y + 2][x] != "B") {
-                            board[y + 1][x] = "SO";
-                            board[y + 2][x] = "B";
-                            board[y][x] = " ";
-                            break outer;
-                        }
-                    } else {
-                        board[y + 1][x] = "SO";
-                        board[y][x] = " ";
-                        break outer;
-                    }
-                } else if (board[y][x] === "S" && board[y + 1][x] == "B" && board[y + 2][x] != "B" && board[y + 2][x] != "BO") {
-                    if (board[y + 2][x] != "O" && board[y + 2][x] != "W") {
-                        board[y + 1][x] = "S";
-                        board[y + 2][x] = "B"
-                        board[y][x] = " ";
-                        break outer;
-                    } else if (board[y + 2][x] != "W") {
-                        board[y + 1][x] = "S";
-                        board[y + 2][x] = "BO";
-                        board[y][x] = " ";
-                        break outer;
-                    }
-                } else if (board[y][x] === "SO" && board[y + 1][x] != "W") {
-                    if (board[y + 1][x] === "B" && board[y + 2][x] != "O" && board[y + 2][x] != "BO" && board[y + 2][x] != "W") {
-                        board[y + 1][x] = "S"
-                        board[y + 2][x] = "B"
-                        board[y][x] = "O"
-                        break outer;
-                    } else if (board[y + 2][x] != "W") {
-                        if (board[y + 2][x] != "O" && board[y + 2][x] != "BO") {
-                            board[y + 1][x] = "S"
-                            board[y][x] = "O"
-                            break outer;
-                        } else if (board[y + 1][x] === "B" && board[y + 2][x] != "BO") {
-                            board[y + 1][x] = "S"
-                            board[y][x] = "O"
-                            board[y + 2][x] = "BO"
-                            break outer;
-                        } else if (board[y + 2][x] != "W" && board[y + 2][x] != "BO") {
-                            board[y + 1][x] = "S";
-                            board[y][x] = "O";
-                            break outer;
-                        } else if (board[y + 1][x] != "B") {
-                            board[y + 1][x] = "S";
-                            board[y][x] = "O";
-                            break outer;
-                        }
-                    } else if (board[y][x] === "SO" && board[y + 1][x] != "B") {
-                        board[y + 1][x] = "S";
-                        board[y][x] = "O";
-                        break outer;
-                    }
-                }
-            }
-        }
-        document.body.innerHTML = originalHtml;
-        drawBoard();
-        setTimeout(checkWin, 1000);
-    }
 })
 
 
