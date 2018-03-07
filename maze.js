@@ -93,7 +93,7 @@ document.addEventListener('keydown', (event) => {
                         board[y][x] = " ";
                         break outer;
                     }
-                } else if (board[y][x] === "S" && board[next.y][next.x] === "B" && board[nextNext.y][nextNext.x] != "W" && board[nextNext.y][nextNext.x] != "B" && board[nextNext.y][nextNext.x] != "BO") {
+                } else if (board[y][x] === "S" && board[next.y][next.x] === "B" && board[nextNext.y][nextNext.x] != "W" && board[nextNext.y][nextNext.x] != "B" && board[nextNext.y][nextNext.x] != "BO" && board[nextNext.y][nextNext.x] != "X") {
                     if (board[nextNext.y][nextNext.x] === "O") {
                         board[nextNext.y][nextNext.x] = "BO";
                     } else {
