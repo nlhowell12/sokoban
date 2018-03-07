@@ -90,7 +90,7 @@ document.addEventListener('keydown', (event) => {
         }
         document.body.innerHTML = originalHtml;
         drawBoard();
-        checkWin();
+        setTimeout(checkWin, 1000);
     } else if (keyEvent == "ArrowLeft") {
         outer: for (let y = 0; y < board.length; y++) {
             for (let x = 0; x < board[y].length; x++) {
@@ -152,7 +152,7 @@ document.addEventListener('keydown', (event) => {
         }
         document.body.innerHTML = originalHtml;
         drawBoard();
-        checkWin();
+        setTimeout(checkWin, 1000);
     }
     else if (keyEvent == "ArrowUp") {
         outer:
@@ -210,7 +210,7 @@ document.addEventListener('keydown', (event) => {
         }
         document.body.innerHTML = originalHtml;
         drawBoard();
-        checkWin();
+        setTimeout(checkWin, 1000);
     } else if (keyEvent == "ArrowDown") {
         outer: for (let y = 0; y < board.length; y++) {
             for (let x = 0; x < board[y].length; x++) {
@@ -281,7 +281,7 @@ document.addEventListener('keydown', (event) => {
         }
         document.body.innerHTML = originalHtml;
         drawBoard();
-        checkWin();
+        setTimeout(checkWin, 1000);
     }
 })
 
