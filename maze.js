@@ -242,7 +242,7 @@ document.addEventListener('keydown', (event) => {
                         board[y][x] = "O"
                         break outer;
                     } else if (board[y + 2][x] != "W"){
-                        if (board[y + 2][x] != "O"  && board[y + 2][x] != "W") {
+                        if (board[y + 2][x] != "O" && board[y + 2][x] != "BO" ) {
                             board[y + 1][x] = "S"
                             board[y][x] = "O"
                             break outer;
@@ -252,13 +252,13 @@ document.addEventListener('keydown', (event) => {
                             board[y + 2][x] = "BO"
                             break outer;
                         }
-                        else {
+                        else if (board[y + 2][x] != "W" && board[y + 2][x] != "BO"){
                             board[y + 1][x] = "S";
                             board[y][x] = "O";
                             break outer;
                         }
                     }
-                    else {
+                    else if (board[y][x] === "SO" && board[y + 1][x] != "B") {
                         board[y + 1][x] = "S";
                         board[y][x] = "O";
                         break outer;
