@@ -17,10 +17,8 @@ var originalHtml = document.body.innerHTML
 function checkWin() {
     let findStorage = document.querySelectorAll("#filledStorage").length;
     if (findStorage === 7) {
-
         alert("You Win!");
         resetBoard();
-
     }
 }
 
@@ -71,9 +69,6 @@ document.addEventListener('keydown', (event) => {
     outer:
         for (let y = 0; y < board.length; y++) {
             for (let x = 0; x < board[y].length; x++) {
-                if (x === 2 && y === 2) {
-                    debugger;
-                }
                 let {
                     next,
                     nextNext
@@ -140,48 +135,29 @@ function drawBoard() {
         for (let x = 0; x < board[y].length; x++) {
             let getRow = document.getElementById('row-' + (y + 1));
             let createCell = document.createElement('div');
+            getRow.appendChild(createCell);
             if (board[y][x] === "W") {
-                getRow.appendChild(createCell);
                 createCell.className = "wall";
-            }
-            if (board[y][x] === " ") {
-                getRow.appendChild(createCell);
+            } else {
                 createCell.className = "cell";
-            }
-            if (board[y][x] === "S") {
-                getRow.appendChild(createCell);
-                createCell.className = "cell";
-                createCell.id = "playerIcon";
-            }
-            if (board[y][x] === "F") {
-                getRow.appendChild(createCell);
-                createCell.className = "cell";
-                createCell.id = "finish";
-            }
-            if (board[y][x] === "B") {
-                getRow.appendChild(createCell);
-                createCell.className = "cell";
-                createCell.id = "barrel";
-            }
-            if (board[y][x] === "O") {
-                getRow.appendChild(createCell);
-                createCell.className = "cell";
-                createCell.id = "storage";
-            }
-            if (board[y][x] === "BO") {
-                getRow.appendChild(createCell);
-                createCell.className = "cell";
-                createCell.id = "filledStorage";
-            }
-            if (board[y][x] === "SO") {
-                getRow.appendChild(createCell);
-                createCell.className = "cell";
-                createCell.id = "playerIconStorage";
-            }
-            if (board[y][x] === "X") {
-                getRow.appendChild(createCell);
-                createCell.className = "cell";
-                createCell.id = "xFilledStorage";
+                if (board[y][x] === "S") {
+                    createCell.id = "playerIcon";
+                }
+                if (board[y][x] === "B") {
+                    createCell.id = "barrel";
+                }
+                if (board[y][x] === "O") {
+                    createCell.id = "storage";
+                }
+                if (board[y][x] === "BO") {
+                    createCell.id = "filledStorage";
+                }
+                if (board[y][x] === "SO") {
+                    createCell.id = "playerIconStorage";
+                }
+                if (board[y][x] === "X") {
+                    createCell.id = "xFilledStorage";
+                }
             }
         }
     }
